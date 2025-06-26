@@ -1,0 +1,6 @@
+streamlit
+spacy
+pandas
+nltk
+textstat
+scikit-learn
