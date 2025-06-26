@@ -9,13 +9,17 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from textstat import flesch_reading_ease, gunning_fog
 
-# Robust loading of en_core_web_sm
+# Safe spaCy model loading
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    import spacy.cli
-    spacy.cli.download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
+    import subprocess
+    subprocess.run([
+        "python", "-m", "pip", "install", "--user",
+        "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl"
+    ], check=True)
+    import en_core_web_sm
+    nlp = en_core_web_sm.load()
 
 nltk.download('vader_lexicon')
 sentiment_analyzer = SentimentIntensityAnalyzer()
@@ -37,17 +41,20 @@ ENTITY_COLORS = {
 st.set_page_config(page_title="🧠 NERO v3 - Free SEO Analyzer", layout="wide")
 st.title("🧠 NERO - Entity & Keyword Analyzer v3 (Free)")
 
+# Sidebar toggles
 sentiment_toggle = st.sidebar.checkbox("🔁 Enable Sentiment Analysis")
 compare_toggle = st.sidebar.checkbox("🔁 Compare with Competitor Content")
 readability_toggle = st.sidebar.checkbox("📚 Show Readability Scores")
 tfidf_toggle = st.sidebar.checkbox("📈 Show Keyword Density + TF-IDF")
 cluster_toggle = st.sidebar.checkbox("🧠 Show Keyword Clusters (KMeans)")
 
+# Inputs
 user_input = st.text_area("✍️ Paste your content here:", height=300)
 competitor_input = ""
 if compare_toggle:
     competitor_input = st.text_area("🆚 Paste competitor content to compare:", height=300)
 
+# Analysis button
 if st.button("🔍 Analyze"):
     if not user_input.strip():
         st.warning("Please paste content.")
