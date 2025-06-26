@@ -1,5 +1,6 @@
 import streamlit as st
-import spacy
+import spacy.cli
+spacy.cli.download("en_core_web_sm")
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
@@ -9,7 +10,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from textstat import flesch_reading_ease, gunning_fog
 
-nlp = spacy.load("en_core_web_sm")
 nltk.download('vader_lexicon')
 sentiment_analyzer = SentimentIntensityAnalyzer()
 
