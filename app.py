@@ -1,4 +1,13 @@
+# Page configuration - MUST be first Streamlit command
 import streamlit as st
+
+st.set_page_config(
+    page_title="🧠 NERO v3 - Advanced SEO Analyzer", 
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Now import other libraries
 import spacy
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -58,15 +67,9 @@ ENTITY_COLORS = {
     "LANGUAGE": "#ffb74d",
     "PERCENT": "#81c784",
     "ORDINAL": "#9575cd",
-    "CARDINAL": "#64b5f6"
+    "CARDINAL": "#64b5f6",
+    "PERSON_OR_ORG": "#ff9800",  # Added for fallback entities
 }
-
-# Page configuration
-st.set_page_config(
-    page_title="🧠 NERO v3 - Advanced SEO Analyzer", 
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Custom CSS for better styling
 st.markdown("""
