@@ -81,7 +81,7 @@ streamlit run app.py
 
 ## 📸 Screenshots
 
-> _Add screenshots here (e.g., entity highlights, scorecards, keyword clusters)_
+![image](https://github.com/user-attachments/assets/4f5165c6-a939-41eb-b8b6-9e605a7993fb)
 
 ---
 
