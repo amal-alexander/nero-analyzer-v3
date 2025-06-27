@@ -96,7 +96,7 @@ streamlit run app.py
 
 ## 🧠 Creator
 
-Built by **Amal Alexander** – SEO Engineer & Developer  
+Built by **Amal Alexander** – SEO Professional & Developer  
 Feel free to connect or contribute!
 
 ---
